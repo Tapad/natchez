@@ -101,6 +101,20 @@ lazy val opencensus = project
     )
   )
 
+lazy val `open-telemetry` = project
+  .in(file("modules/open-telemetry"))
+  .dependsOn(core)
+  .enablePlugins(AutomateHeaderPlugin)
+  .settings(commonSettings)
+  .settings(
+    name        := "natchez-open-telemetry",
+    description := "OpenTelemetry support for Natchez.",
+    libraryDependencies ++= Seq(
+      "io.opentelemetry" % "opentelemetry-api" % "0.9.1",
+      "com.google.cloud.opentelemetry" % "exporter-trace" % "0.9.1" % "test",
+    )
+  )
+
 lazy val lightstep = project
   .in(file("modules/lightstep"))
   .dependsOn(core)
